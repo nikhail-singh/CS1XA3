@@ -1,3 +1,0 @@
-line b
-
-line 1
