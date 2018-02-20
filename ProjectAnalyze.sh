@@ -1,5 +1,5 @@
 #!/bin/bash
 
-git status -u  https://github.com/singhn18/CS1XA3
+git status
 
-git diff -- . ':(exclude)CS1XA3/changes.log'> "changes.log"
+git diff HEAD --  . ':(exclude)changes.log' > "changes.log"

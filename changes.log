@@ -1,16 +1,12 @@
-diff --git a/tmp b/tmp
-index 644bbee..35785d5 100644
---- a/tmp
-+++ b/tmp
-@@ -1,3 +1,3 @@
- test file for checking if ProjectAnalyzer can properly check commits
--testing again
--ccccccccccccccccccccccccccccc
-+testing
-+qqqqqqqqqqqqqqqqq
-diff --git a/tmp2.txt b/tmp2.txt
-index e69de29..16215a0 100644
---- a/tmp2.txt
-+++ b/tmp2.txt
-@@ -0,0 +1 @@
-+aaaaaaaaaaaaaaaa
+diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
+index 3fe4507..e2c43c3 100755
+--- a/ProjectAnalyze.sh
++++ b/ProjectAnalyze.sh
+@@ -1,5 +1,5 @@
+ #!/bin/bash
+ 
+-git status -u  https://github.com/singhn18/CS1XA3
++git status
+ 
+-git diff -- . ':(exclude)CS1XA3/changes.log'> "changes.log"
++git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
