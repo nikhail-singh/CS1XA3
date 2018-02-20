@@ -1,5 +1,5 @@
 #!/bin/bash
 
-git status -uno
+git status -u
 
 git diff HEAD > "changes.log"
