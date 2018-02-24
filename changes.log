@@ -1,12 +1,10 @@
 diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
-index 3fe4507..e2c43c3 100755
+index e2c43c3..aff6810 100755
 --- a/ProjectAnalyze.sh
 +++ b/ProjectAnalyze.sh
-@@ -1,5 +1,5 @@
- #!/bin/bash
+@@ -3,3 +3,5 @@
+ git status
  
--git status -u  https://github.com/singhn18/CS1XA3
-+git status
- 
--git diff -- . ':(exclude)CS1XA3/changes.log'> "changes.log"
-+git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
+ git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
++
++grep -r "#TODO" > "todo.log"
