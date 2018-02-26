@@ -1,4 +1,4 @@
-Assign1/README.md:3. Checks every file in the repository for #TODO and and add all lines with that tag into todo.log
+Assign1/README.md:3. Checks every file in the repository excluding todo.log, ProjectAnalyze.sh and changes.log for #TODO and
 Assign1/Assign1.md:#TODO - need to finish functions 3 and 4
 Assign1/Assign1.md:#TODO - function 3 is the TODO.log
 Assign1/Assign1.md:#TODO - function 4 checks all haskell files for errors

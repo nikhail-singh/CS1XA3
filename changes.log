@@ -1,37 +1,12 @@
-diff --git a/Labs/Bash01.hs b/Labs/Bash01.hs
-index 6a92376..8b22b81 100644
---- a/Labs/Bash01.hs
-+++ b/Labs/Bash01.hs
-@@ -2,4 +2,4 @@ macid :: String
- macid = "singhn18"
- 
- answers :: [(Int,String)]
--	answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
-+answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
-diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
-index 87191b9..2f5bd40 100755
---- a/ProjectAnalyze.sh
-+++ b/ProjectAnalyze.sh
-@@ -2,7 +2,7 @@
- 
- git status
- 
--git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
-+git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
- 
- grep -r --exclude={todo.log,changes.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
- 
-diff --git a/error.log b/error.log
-index b6f361b..eac30cc 100644
---- a/error.log
-+++ b/error.log
-@@ -1,5 +1,5 @@
- 
--Labs/Bash01.hs:4:12:
--    Illegal type signature: ‘[(Int, String)] answers’
--      Perhaps you intended to use ScopedTypeVariables
--    In a pattern type-signature
-+Labs/Bash01.hs:1:1:
-+    The IO action ‘main’ is not defined in module ‘Main’
-+
-+bash.hs:1:1: The IO action ‘main’ is not defined in module ‘Main’
+diff --git a/Assign1/README.md b/Assign1/README.md
+index 17fa0f3..d5b9bf1 100644
+--- a/Assign1/README.md
++++ b/Assign1/README.md
+@@ -2,4 +2,6 @@ This readme details the functions of ProjectAnalyze.sh
+ 1. checks to see if the local repository(on machine) and the remote repository (on GitHub) are in sync
+    if not it tells you how many commits behind you are.
+ 2. puts all uncommitted changes into a file called changes.log by redirecting output of git diff to that file
+-3. Checks every file in the repository for #TODO and and add all lines with that tag into todo.log
++3. Checks every file in the repository excluding todo.log, ProjectAnalyze.sh and changes.log for #TODO and
++   adds all lines with that tag into todo.log
++4. checks every haskell file for errors and puts all errors into a file called error.log
