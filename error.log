@@ -1,5 +1,5 @@
 
-Labs/tmp.hs:4:12:
+Labs/test.hs:4:12:
     Illegal type signature: ‘[(Int, String)] answers’
       Perhaps you intended to use ScopedTypeVariables
     In a pattern type-signature

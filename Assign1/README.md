@@ -12,8 +12,11 @@ REQUIRED functions
 CUSTOM functions
 1. Shows the human readable file size of every subdirectory in the repository (total is whats in the CS1XA3 directory
    directly)
-2. By using the optional -se can search for a specific line of code
-3. checks all python files for syntax errors and puts those errors into a file called PythonErrors.log
+2. Using the optional parameter "-ct" will remove any file beginning with tmp. Useful for clearing clutter in the 
+   repository
+3. Checks all python files for syntax errors and puts those errors into a file called PythonErrors.log
+4. Using the optional parameter "-s" will search for a specific line of code and add it to search.log
+5. Using the optional parameter "help" will pull up this readme for reference
 
 CREDITS:
 Required functions
