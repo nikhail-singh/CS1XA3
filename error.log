@@ -1,3 +1,5 @@
 
-Labs/Bash01.hs:1:1:
-    The IO action ‘main’ is not defined in module ‘Main’
+Labs/tmp.hs:4:12:
+    Illegal type signature: ‘[(Int, String)] answers’
+      Perhaps you intended to use ScopedTypeVariables
+    In a pattern type-signature

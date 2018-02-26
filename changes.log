@@ -1,12 +1,102 @@
-diff --git a/Assign1/README.md b/Assign1/README.md
-index 17fa0f3..d5b9bf1 100644
---- a/Assign1/README.md
-+++ b/Assign1/README.md
-@@ -2,4 +2,6 @@ This readme details the functions of ProjectAnalyze.sh
- 1. checks to see if the local repository(on machine) and the remote repository (on GitHub) are in sync
-    if not it tells you how many commits behind you are.
- 2. puts all uncommitted changes into a file called changes.log by redirecting output of git diff to that file
--3. Checks every file in the repository for #TODO and and add all lines with that tag into todo.log
-+3. Checks every file in the repository excluding todo.log, ProjectAnalyze.sh and changes.log for #TODO and
-+   adds all lines with that tag into todo.log
-+4. checks every haskell file for errors and puts all errors into a file called error.log
+diff --git a/Labs/Bash01.hs b/Labs/Bash01.hs
+deleted file mode 100644
+index 8b22b81..0000000
+--- a/Labs/Bash01.hs
++++ /dev/null
+@@ -1,5 +0,0 @@
+-macid :: String
+-macid = "singhn18"
+-
+-answers :: [(Int,String)]
+-answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
+diff --git a/Labs/Bash01/TODO.txt b/Labs/Bash01/TODO.txt
+index 3dd43ac..c7911c4 100644
+--- a/Labs/Bash01/TODO.txt
++++ b/Labs/Bash01/TODO.txt
+@@ -1 +1,2 @@
+ due January 23rd
++main = undefined
+diff --git a/Labs/Bash02/TODO.txt b/Labs/Bash02/TODO.txt
+index 0c54608..271da67 100644
+--- a/Labs/Bash02/TODO.txt
++++ b/Labs/Bash02/TODO.txt
+@@ -1,2 +1,3 @@
+ due February 6th
+ 
++main = undefined
+diff --git a/Labs/Elm01/TODO.txt b/Labs/Elm01/TODO.txt
+index b9b11d5..eac2da4 100644
+--- a/Labs/Elm01/TODO.txt
++++ b/Labs/Elm01/TODO.txt
+@@ -1 +1,2 @@
+ due February 27th
++main = undefined
+diff --git a/Labs/Elm02/TODO.txt b/Labs/Elm02/TODO.txt
+index b946380..83d3adc 100644
+--- a/Labs/Elm02/TODO.txt
++++ b/Labs/Elm02/TODO.txt
+@@ -1 +1,2 @@
+ due March 13th
++main = undefined
+diff --git a/Labs/Haskell01/TODO.txt b/Labs/Haskell01/TODO.txt
+index e57ae4d..c591120 100644
+--- a/Labs/Haskell01/TODO.txt
++++ b/Labs/Haskell01/TODO.txt
+@@ -1 +1,2 @@
+ due March 27th
++main = undefined
+diff --git a/Labs/Haskell02/TODO.txt b/Labs/Haskell02/TODO.txt
+index 6c8c3d0..983653f 100644
+--- a/Labs/Haskell02/TODO.txt
++++ b/Labs/Haskell02/TODO.txt
+@@ -1 +1,2 @@
+ due April 3rd
++main = undefined
+diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
+index 2f5bd40..a0a9929 100755
+--- a/ProjectAnalyze.sh
++++ b/ProjectAnalyze.sh
+@@ -6,4 +6,13 @@ git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
+ 
+ grep -r --exclude={todo.log,changes.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
+ 
++find . -name '*.hs' -print0 | 
++	while IFS= read -r -d $'\0' file 
++	do 
++		hasmain=$(grep "main" "$file" | wc -l) 
++		if [ $hasmain -lt 1 ]
++		then 
++			echo "main = undefined" >> $file
++		fi
++	done
+ find . -name "*.hs" -print0 -exec ghc -fno-code 2> error.log {} \;
+diff --git a/bash.hs b/bash.hs
+index 45846a9..95c2f7d 100644
+--- a/bash.hs
++++ b/bash.hs
+@@ -1 +1,6 @@
+ main = undefined
++macid :: String
++macid = "singhn18"
++
++answers :: [(Int,String)]
++answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
+diff --git a/error.log b/error.log
+index ed4c59a..c206f8f 100644
+--- a/error.log
++++ b/error.log
+@@ -1,3 +1,5 @@
+ 
+-Labs/Bash01.hs:1:1:
+-    The IO action ‘main’ is not defined in module ‘Main’
++Labs/tmp.hs:4:12:
++    Illegal type signature: ‘[(Int, String)] answers’
++      Perhaps you intended to use ScopedTypeVariables
++    In a pattern type-signature
+diff --git a/tmp2.txt b/tmp2.txt
+index 16215a0..7db0672 100644
+--- a/tmp2.txt
++++ b/tmp2.txt
+@@ -1 +1,2 @@
+ aaaaaaaaaaaaaaaa
++main = undefined
