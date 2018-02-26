@@ -1,10 +1,29 @@
 diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
-index e2c43c3..aff6810 100755
+index aff6810..f8ff0d7 100755
 --- a/ProjectAnalyze.sh
 +++ b/ProjectAnalyze.sh
-@@ -3,3 +3,5 @@
- git status
+@@ -4,4 +4,11 @@ git status
  
  git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
+ 
+-grep -r "#TODO" > "todo.log"
++grep -r --exclude={todo.log,changes.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
 +
-+grep -r "#TODO" > "todo.log"
++find . -name "*.hs" -print0 |
++	while IFS=’’ read -r -d $’\0’ file
++	do
++		ghc -fno-code file.hs 2> error.log 
++	done
++
+diff --git a/todo.log b/todo.log
+index e9f6e34..4b24175 100644
+--- a/todo.log
++++ b/todo.log
+@@ -1,5 +1,5 @@
+-changes.log:+grep -r "#TODO" > "todo.log"
+-ProjectAnalyze.sh:grep -r "#TODO" > "todo.log"
++ProjectAnalyze.sh:grep -r --exclude={todo.log,changes.log} "#TODO" > "todo.log"
++Assign1/README.md:3. Checks every file in the repository for #TODO and and add all lines with that tag into todo.log
+ Assign1/Assign1.md:#TODO - need to finish functions 3 and 4
+ Assign1/Assign1.md:#TODO - function 3 is the TODO.log
+ Assign1/Assign1.md:#TODO - function 4 checks all haskell files for errors
