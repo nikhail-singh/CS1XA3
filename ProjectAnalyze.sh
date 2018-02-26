@@ -2,7 +2,7 @@
 
 git status
 
-git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
+git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
 
 grep -r --exclude={todo.log,changes.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
 

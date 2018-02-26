@@ -1,15 +1,37 @@
+diff --git a/Labs/Bash01.hs b/Labs/Bash01.hs
+index 6a92376..8b22b81 100644
+--- a/Labs/Bash01.hs
++++ b/Labs/Bash01.hs
+@@ -2,4 +2,4 @@ macid :: String
+ macid = "singhn18"
+ 
+ answers :: [(Int,String)]
+-	answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
++answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
 diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
-index f8ff0d7..87191b9 100755
+index 87191b9..2f5bd40 100755
 --- a/ProjectAnalyze.sh
 +++ b/ProjectAnalyze.sh
-@@ -6,9 +6,4 @@ git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
+@@ -2,7 +2,7 @@
+ 
+ git status
+ 
+-git diff HEAD --  . ':(exclude)changes.log' > "changes.log"
++git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
  
  grep -r --exclude={todo.log,changes.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
  
--find . -name "*.hs" -print0 |
--	while IFS=’’ read -r -d $’\0’ file
--	do
--		ghc -fno-code file.hs 2> error.log 
--	done
--
-+find . -name "*.hs" -print0 -exec ghc -fno-code 2> error.log {} \;
+diff --git a/error.log b/error.log
+index b6f361b..eac30cc 100644
+--- a/error.log
++++ b/error.log
+@@ -1,5 +1,5 @@
+ 
+-Labs/Bash01.hs:4:12:
+-    Illegal type signature: ‘[(Int, String)] answers’
+-      Perhaps you intended to use ScopedTypeVariables
+-    In a pattern type-signature
++Labs/Bash01.hs:1:1:
++    The IO action ‘main’ is not defined in module ‘Main’
++
++bash.hs:1:1: The IO action ‘main’ is not defined in module ‘Main’
