@@ -1,119 +1,53 @@
-diff --git a/Assign1/README.md b/Assign1/README.md
-index 4865e53..ad462c6 100644
---- a/Assign1/README.md
-+++ b/Assign1/README.md
-@@ -12,8 +12,11 @@ REQUIRED functions
- CUSTOM functions
- 1. Shows the human readable file size of every subdirectory in the repository (total is whats in the CS1XA3 directory
-    directly)
--2. By using the optional -se can search for a specific line of code
--3. checks all python files for syntax errors and puts those errors into a file called PythonErrors.log
-+2. Using the optional parameter "-ct" will remove any file beginning with tmp. Useful for clearing clutter in the 
-+   repository
-+3. Checks all python files for syntax errors and puts those errors into a file called PythonErrors.log
-+4. Using the optional parameter "-s" will search for a specific line of code and add it to search.log
-+5. Using the optional parameter "help" will pull up this readme for reference
- 
- CREDITS:
- Required functions
-diff --git a/Labs/tmp b/Labs/tmp
+diff --git a/.nfs00000000026e107d000001d4 b/.nfs00000000026e107d000001d4
 deleted file mode 100755
-index e2502bd..0000000
-Binary files a/Labs/tmp and /dev/null differ
-diff --git a/Labs/tmp.hs b/Labs/tmp.hs
-deleted file mode 100644
-index cc4fe50..0000000
---- a/Labs/tmp.hs
+index a381880..0000000
+--- a/.nfs00000000026e107d000001d4
 +++ /dev/null
-@@ -1,6 +0,0 @@
--macid :: String
--macid = "singhn18"
+@@ -1,47 +0,0 @@
+-#!/bin/bash
 -
--answers :: [(Int,String)]
--	answers = [(1,"terminus"),(2,"StoneChamber"),(3,"sudo"),(4,"Farm"),(5,"KernelFiles"),(6,"IHTFP")]
--main = undefined
-diff --git a/ProjectAnalyze.sh b/ProjectAnalyze.sh
-index 9faa876..a355c94 100755
---- a/ProjectAnalyze.sh
-+++ b/ProjectAnalyze.sh
-@@ -1,21 +1,37 @@
- #!/bin/bash
- 
--git status
-+if [ "$1" = "help" ]
-+then
-+	vim ./Assign1/README.md
-+else
-+	git status	
- 
--git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
-+	git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
- 
--grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
-+	grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
- 
--find . -name '*.hs' -print0 | 
--	while IFS= read -r -d $'\0' file 
--	do 
--		hasmain=$(grep "main" "$file" | wc -l) 
--		if [ $hasmain -lt 1 ]
--		then 
--			echo "main = undefined" >> $file
--		fi
--	done
--find . -name "*.hs" -print0 -exec ghc -fno-code 1>/dev/null 2> error.log {} \;
-+	find . -name '*.hs' -print0 | 
-+		while IFS= read -r -d $'\0' file 
-+		do 
-+			hasmain=$(grep "main" "$file" | wc -l) 
-+			if [ $hasmain -lt 1 ]
-+			then 
-+				echo "main = undefined" >> $file
-+			fi
-+		done
-+	find . -name "*.hs" -print0 -exec ghc -fno-code 1>/dev/null 2> error.log {} \;
- 
--du -csh */
--find . -name "*.py" -print0 -exec python -m py_compile script.py 1>/dev/null 2> PythonError.log {} \;
-+	du -csh */
-+
-+	find . -name "*.py" -print0 -exec python -m py_compile script.py 1>/dev/null 2> PythonError.log {} \;
-+
-+	if [ "$1" = "-ct" ]
-+	then
-+		rm -r tmp*
-+	fi
-+
-+	if [ "$1" = "-s" ]
-+	then
-+		grep -r --exclude={search.log} --exclude-dir='.*/' $2 >"search.log"
-+	fi
-+fi
-diff --git a/error.log b/error.log
-index c206f8f..3f10cd8 100644
---- a/error.log
-+++ b/error.log
-@@ -1,5 +1,5 @@
- 
--Labs/tmp.hs:4:12:
-+Labs/test.hs:4:12:
-     Illegal type signature: ‘[(Int, String)] answers’
-       Perhaps you intended to use ScopedTypeVariables
-     In a pattern type-signature
-diff --git a/tmp b/tmp
-deleted file mode 100644
-index 35785d5..0000000
---- a/tmp
-+++ /dev/null
-@@ -1,3 +0,0 @@
--test file for checking if ProjectAnalyzer can properly check commits
--testing
--qqqqqqqqqqqqqqqqq
-diff --git a/tmp2.txt b/tmp2.txt
-deleted file mode 100644
-index 7db0672..0000000
---- a/tmp2.txt
-+++ /dev/null
-@@ -1,2 +0,0 @@
--aaaaaaaaaaaaaaaa
--main = undefined
+-if [ "$1" = "help" ]
+-then
+-	vim ./Assign1/README.md
+-else
+-	git status
+-	changes=$(grep "Changes not staged for commit:" | wc)
+-	if [ $changes -gt 0 ]
+-	then
+-		echo "would you like to add these changes to the commit (y/n)"
+-		read answer
+-		if [ $answer = "y" || $answer = "Y" ]
+-		then
+-			git add . 
+-		fi 
+-	fi
+-
+-	git diff --minimal  HEAD -- . ':(exclude)changes.log' > "changes.log"
+-
+-	grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
+-
+-	find . -name '*.hs' -print0 | 
+-		while IFS= read -r -d $'\0' file 
+-		do 
+-			hasmain=$(grep "main" "$file" | wc -l) 
+-			if [ $hasmain -lt 1 ]
+-			then 
+-				echo "main = undefined" >> $file
+-			fi
+-		done
+-	find . -name "*.hs" -print0 -exec ghc -fno-code 1>/dev/null 2> error.log {} \;
+-
+-	du -csh */
+-
+-	find . -name "*.py" -print0 -exec python -m py_compile script.py 1>/dev/null 2> PythonError.log {} \;
+-
+-	if [ "$1" = "-ct" ]
+-	then
+-		find . -type f -name tmp -exec rm {} \;
+-	fi
+-
+-	if [ "$1" = "-s" ]
+-	then
+-		grep -r --exclude={search.log} --exclude-dir='.*/' $2 >"search.log"
+-	fi
+-fi

@@ -1,11 +1,4 @@
-todo.log:Assign1/Assign1.md:#TODO - need to finish functions 3 and 4
-todo.log:Assign1/Assign1.md:#TODO - function 3 is the TODO.log
-todo.log:Assign1/Assign1.md:#TODO - function 4 checks all haskell files for errors
-Assign1/README.md:This readme details the functions of ProjectAnalyze.sh
-Assign1/README.md:REQUIRED functions
-Assign1/README.md:CUSTOM functions
-Assign1/README.md:Required functions
-Assign1/README.md:Custom functions
-Assign1/Assign1.md:#TODO - need to finish functions 3 and 4
-Assign1/Assign1.md:#TODO - function 3 is the TODO.log
-Assign1/Assign1.md:#TODO - function 4 checks all haskell files for errors
+changes.log:-	grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
+ProjectAnalyze.sh:	grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
+Assign1/ProjectAnalyze.sh:	grep -r --exclude={*.log,ProjectAnalyze.sh} "#TODO" > "todo.log"
+Assign1/README.md:   adds all lines with that tag into todo.log
