@@ -15,7 +15,7 @@ And it's source code here:     [Elm source](https://github.com/singhn18/CS1XA3/b
 
 ## Credits
 Listed below are links to all of the resources I used for this project
-[Rendering an Elm Stylesheet](http://elmprogramming.com/building-a-simple-page-in-elm.html)
+1. [Rendering an Elm Stylesheet](http://elmprogramming.com/building-a-simple-page-in-elm.html)
 [for help with CSS](https://www.w3schools.com/css/default.asp)
 [for help with SVG graphics](https://www.w3schools.com/css/default.asp)
 [Simple Elm examples that helped me build my program](http://elm-lang.org:1234/examples)
