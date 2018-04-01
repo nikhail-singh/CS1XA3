@@ -90,7 +90,7 @@ view model = let
       mOpacity = toString model.opacity
       object = [rect [x posX, y posY, width posW, height posH, rx posRX, ry posRY, stroke "black", strokeWidth "7", fill mfill, opacity mOpacity] []]
       instructions = [ rect [x "965", y "50",width "385",height "700", fill "black"][],
-                       text_ [x "1150", y "175", fill "darkturquoise", fontFamily "Impact",textAnchor "middle",fontSize "20"] [text "Controls"],
+                       text_ [x "1150", y "175", fill "magenta", fontFamily "Impact",textAnchor "middle",fontSize "25"] [text "Controls"],
                        text_ [x "1150", y "200", fill "white", fontFamily "Calibri",textAnchor "middle"] [text "use W A S D to grow or shrink the box"],
                        text_ [x "1150", y "225", fill "white", fontFamily "Calibri",textAnchor "middle"] [text "press spacebar to make the box fade and reappear"],
                        text_ [x "1150", y "250", fill "white", fontFamily "Calibri",textAnchor "middle"] [text "press the up arrow to make it move in a circle"],
