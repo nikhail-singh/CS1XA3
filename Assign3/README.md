@@ -11,8 +11,8 @@ This assignment is a math expression analyzer that can evaluate different mathem
 7. e^x
 8 basic trig (sin, cos, tan)
 
-In addition to being able to evaluate these mathematical expressions the program can also simplify expressions display them out and parse strings into the expression datatype for evaluation for the format see the documentation for [ExprParser.hs] (https://github.com/singhn18/CS1XA3/blob/master/Assign3/ExprParser.hs).
+In addition to being able to evaluate these mathematical expressions the program can also simplify expressions display them out and parse strings into the expression datatype for evaluation for the format see the documentation for [ExprParser.hs](https://github.com/singhn18/CS1XA3/blob/master/Assign3/ExprParser.hs).
 
 ## References
 Listed below are links to all of the resources I used for this project
-* [Jessy's method for generalizing exprDiff] (https://github.com/deleeuwj1/CS1XA3/blob/master/Assign3/Exprs/ExprEval.hs)
+* [Jessy's method for generalizing exprDiff](https://github.com/deleeuwj1/CS1XA3/blob/master/Assign3/Exprs/ExprEval.hs)
